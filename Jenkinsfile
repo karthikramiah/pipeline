@@ -3,7 +3,9 @@ pipeline {
     
     stages {
         stage('Git Checkout') {
-            dir('build') {
+            agent any
+            steps {
+              dir('build') {
                 sshagent(credentials:['dev']) {
                     sh("""
                        git checkout master
@@ -13,6 +15,7 @@ pipeline {
                     """)
                 }
             }
+          }
         }
     }
 }
