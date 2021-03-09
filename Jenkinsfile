@@ -10,7 +10,7 @@ pipeline {
                     sh("""
                        git checkout master
                        commitid=\$(git log -1 | head -1 | awk '{print \$2}')
-                       files=\$(git show --pretty="" --name-only $commitid)
+                       files=\$(git show --pretty="" --name-only \${commitid})
                        echo \$files
                     """)
                 }
