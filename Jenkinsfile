@@ -8,8 +8,8 @@ pipeline {
               dir('build') {
                 sshagent(credentials:['git']) {
                     sh("""
-                       git pull
                        git checkout master
+                       git pull
                        commitid=\$(git log -1 | head -1 | awk '{print \$2}')
                        files=\$(git show --pretty="" --name-only \${commitid})
                        echo \$files
