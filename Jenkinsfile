@@ -12,14 +12,12 @@ pipeline {
                        git pull
                        commitid=\$(git log -1 | head -1 | awk '{print \$2}')
                        files=\$(git show --pretty="" --name-only \${commitid})
-                       echo \$files
                        curdate=\$(date +"%m%d%Y%H%M")
-                       echo \$curdate
-                       for i in \$files
-                       do
-                         echo \$i
-                      done
-                    """)
+                       tag="Build_\${env.BUILD_NUMBER}_\${curdate}"
+                       echo $tag
+                       git tag -a $tag $commitid -m "$tag"
+                       git push --tags
+                     """)
                 }
             }
           }
