@@ -6,7 +6,7 @@ pipeline {
             agent any
             steps {
               dir('build') {
-                sshagent(credentials:['dev']) {
+                sshagent(credentials:['git']) {
                     sh("""
                        git pull
                        git checkout master
