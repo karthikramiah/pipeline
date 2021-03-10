@@ -30,6 +30,9 @@ pipeline {
                 timeout(time: 1, unit: 'DAYS'){
                    input('Proceed to next Step?')
                 }
+                mail to: 'karthikramiah@outlook.com',
+                    subject: "Job \$JOB_NAME is waiting for your approval",
+                    body: """Build \$BUILD_NUMBER is waiting for your approval.Go to $BUILD_URL and approve"""
             }
         }
     }
