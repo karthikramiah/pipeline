@@ -16,6 +16,8 @@ pipeline {
                        tag="Build_${currentBuild.number}_\${curdate}"
                        echo \$tag
                        git tag -a \$tag \$commitid -m "\$tag"
+                       git config --global user.email "dev@dev-VirtualBox"
+                       git config --global user.name "dev"
                        git push --tags
                      """)
                 }
