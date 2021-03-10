@@ -24,5 +24,12 @@ pipeline {
             }
           }
         }
+        stage('Approval') {
+            agent none
+            steps {
+                timeout(time: 1, unit: 'DAYS'){
+                   input('Proceed to next Step?')
+            }
+        }
     }
 }
