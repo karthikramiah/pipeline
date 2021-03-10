@@ -29,6 +29,7 @@ pipeline {
             steps {
                 timeout(time: 1, unit: 'DAYS'){
                    input('Proceed to next Step?')
+                }
             }
         }
     }
