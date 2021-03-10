@@ -14,8 +14,8 @@ pipeline {
                        files=\$(git show --pretty="" --name-only \${commitid})
                        curdate=\$(date +"%m%d%Y%H%M")
                        tag="Build_\${env.BUILD_NUMBER}_\${curdate}"
-                       echo $tag
-                       git tag -a $tag $commitid -m "$tag"
+                       echo \$tag
+                       git tag -a \$tag \$commitid -m "\$tag"
                        git push --tags
                      """)
                 }
