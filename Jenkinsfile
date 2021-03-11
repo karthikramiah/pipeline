@@ -5,10 +5,9 @@ pipeline {
         stage('Git Checkout') {
             agent any
             steps {
-              dir('build') {
+              dir('.') {
                 sshagent(credentials:['git']) {
                     sh("""
-                       #!/bin/bash
                        git checkout master
                        git pull
                        curdate=\$(date +"%m%d%Y%H%M")
@@ -20,11 +19,10 @@ pipeline {
                        for i in \$files
                        do 
                          cd ../.
-                         cp \$i build/tmp/.
+                         cp \$i tmp/.
                        done
-                       shopt -s extglob
-                       rm -v !("tmp")
                        cp tmp/* .
+                       ls | grep -v tmp | xargs rm
                        git config --global user.email "dev@dev-VirtualBox"
                        git config --global user.name "dev"
                        git add .
