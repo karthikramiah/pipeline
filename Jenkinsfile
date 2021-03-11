@@ -10,15 +10,24 @@ pipeline {
                     sh("""
                        git checkout master
                        git pull
-                       commitid=\$(git log -1 | head -1 | awk '{print \$2}')
-                       files=\$(git show --pretty="" --name-only \${commitid})
                        curdate=\$(date +"%m%d%Y%H%M")
                        tag="Build_${currentBuild.number}_\${curdate}"
                        echo \$tag
+                       git checkout -b \$tag
+                       files=$(git diff --name-only HEAD^)
+                       mkdir -p ./tmp
+                       for i in $files
+                       do  
+                         cp $i ./tmp/.
+                       done
+                       shopt -s extglob
+                       rm -v !("tmp")
+                       cp tmp/* .
                        git config --global user.email "dev@dev-VirtualBox"
                        git config --global user.name "dev"
-                       git tag -a \$tag \$commitid -m "\$tag"
-                       git push --tags
+                       git add .
+                       git commit -m "\$tag"
+                       git push origin \$tag                       
                      """)
                 }
             }
