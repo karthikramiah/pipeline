@@ -8,6 +8,7 @@ pipeline {
               dir('build') {
                 sshagent(credentials:['git']) {
                     sh("""
+                       #!/bin/bash
                        git checkout master
                        git pull
                        curdate=\$(date +"%m%d%Y%H%M")
