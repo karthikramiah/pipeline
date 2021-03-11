@@ -17,8 +17,7 @@ pipeline {
                        files=\$(git diff --name-only HEAD^)
                        mkdir -p tmp
                        for i in \$files
-                       do 
-                         cd ../.
+                       do
                          cp \$i tmp/.
                        done
                        cp tmp/* .
