@@ -21,7 +21,7 @@ pipeline {
                          cp \$i tmp/.
                        done
                        cp tmp/* .
-                       ls | grep -v tmp | xargs rm
+                       ls | grep -v tmp | xargs rm -rf
                        git config --global user.email "dev@dev-VirtualBox"
                        git config --global user.name "dev"
                        git add .
