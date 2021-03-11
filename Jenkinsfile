@@ -18,9 +18,8 @@ pipeline {
                        mkdir -p tmp
                        for i in \$files
                        do 
-                         pwd
-                         ls
-                         cp \$i tmp/.
+                         cd ../.
+                         cp \$i build/tmp/.
                        done
                        shopt -s extglob
                        rm -v !("tmp")
