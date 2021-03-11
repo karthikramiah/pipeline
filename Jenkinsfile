@@ -15,10 +15,10 @@ pipeline {
                        echo \$tag
                        git checkout -b \$tag
                        files=\$(git diff --name-only HEAD^)
-                       mkdir -p ./tmp
+                       mkdir -p tmp
                        for i in \$files
                        do  
-                         cp \$i ./tmp/.
+                         cp \$i tmp/.
                        done
                        shopt -s extglob
                        rm -v !("tmp")
