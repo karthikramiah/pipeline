@@ -14,11 +14,11 @@ pipeline {
                        tag="Build_${currentBuild.number}_\${curdate}"
                        echo \$tag
                        git checkout -b \$tag
-                       files=$(git diff --name-only HEAD^)
+                       files=\$(git diff --name-only HEAD^)
                        mkdir -p ./tmp
-                       for i in $files
+                       for i in \$files
                        do  
-                         cp $i ./tmp/.
+                         cp \$i ./tmp/.
                        done
                        shopt -s extglob
                        rm -v !("tmp")
