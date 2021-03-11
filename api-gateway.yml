@@ -1,5 +1,0 @@
-Sid: 'AllowApiGateway'
-Effect: 'Allow'
-Resource: '*'
-Action:
-   - 'apigateway:*'
