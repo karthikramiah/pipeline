@@ -17,7 +17,9 @@ pipeline {
                        files=\$(git diff --name-only HEAD^)
                        mkdir -p tmp
                        for i in \$files
-                       do  
+                       do 
+                         pwd
+                         ls
                          cp \$i tmp/.
                        done
                        shopt -s extglob
